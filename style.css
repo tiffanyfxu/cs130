@@ -35,21 +35,6 @@ main {
     padding-bottom: 40px;
 }
 
-#inspiration a, 
-#inspiration a:link,
-#inspiration a:hover, 
-#inspiration a:visited,
-#lecture a, 
-#lecture a:link,
-#lecture a:hover, 
-#lecture a:visited,
-#tutorials a, 
-#tutorials a:link,
-#tutorials a:hover, 
-#tutorials a:visited
-{
-    color: white;
-}
 
 section {
     /* border: solid 1px #000; */
