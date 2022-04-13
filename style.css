@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0px;
-    font-family: Arial, sans-serif;
+    font-family: 'Comfortaa', cursive;
 }
 header, section {
     padding: 20px;
@@ -20,19 +21,18 @@ main {
 }
 #tutorials {
     color: white;
-    background-color: #db504a;
+    background-color: #d81159;
 }
 #homework {
-    background-color: #e4dfda;
+    background-color: #f5f1ed;
 }
-#lecture {
+#Values {
     color: white;
-    background-color: #48a9a6;
+    background-color: #69b578;
 }
 #inspiration {
-    background-color: #F0F0F0;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    background-color: #f18f01;
+    color: #fff;
 }
 
 
