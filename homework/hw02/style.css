@@ -1,0 +1,326 @@
+body {
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: #fff;
+}
+a, a:hover, a:visited, a:active { 
+    color: #fff;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/**********/
+/* Layout */
+/**********/
+aside, footer, header, nav, section, article {
+    display: flex;
+    flex-direction: column;
+}
+body {
+    overflow: hidden;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto 100px;
+    grid-template-areas:
+       "left main"
+       "bottom bottom";
+    height: 100vh;
+}
+aside {
+    background-color: #000;
+    grid-area: left;
+}
+
+
+header {
+    background: #111;
+    position: fixed;
+    width: calc(100vw - 250px);
+    left: 250px;
+}
+
+main {
+    background: #111;
+    grid-area: main;
+    min-height: calc(350px);
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    z-index: 3;
+}
+
+nav {
+    margin-top: 100px;
+}
+
+footer {
+    background: #222;
+    grid-area: bottom;
+}
+
+
+/***************************/
+/* Accessories & Florishes */
+/***************************/
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background-clip: padding-box;
+    min-height: 30px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: hsla(0,0%,100%,.3);
+}
+
+/***************************/
+/* Part A: Left Navigation */
+/***************************/
+
+#sidebar {
+    padding-left: 15px;
+}
+
+#home {
+    margin: 10px;
+    margin-left: 15px;
+    margin-top: 25px;
+    padding-left: 5px;
+}
+
+#search {
+    margin: 10px;
+    margin-left: 15px;
+    padding-left: 5px;
+}
+
+#yourlibrary {
+    margin: 10px;
+    margin-left: 15px;
+    border-left: 2px solid #1DB954;
+    padding-left: 5px;
+}
+
+
+
+/********************************/
+/* Part B: Header & Nav Styling */
+/********************************/
+
+/*header {
+    padding-top: 20px;
+    padding-right: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: ". . . . . upgrade upgrade upgrade . profile profile profile .";
+    justify-items: center;
+}*/
+
+#upgrade {
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#profile {
+    padding: 10px;
+    border: 2px hidden white;
+    border-radius: 50px;
+    padding: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: rgb(116, 116, 116);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 30px;
+    padding: 2%;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "playlists albums artists . . . . . . . . .";
+    padding-bottom: 10px;
+    justify-items: center;
+}
+
+#playlists {
+    grid-area: playlists;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#albums {
+    grid-area: albums;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#artists {
+    grid-area: artists;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom: 2px solid #1DB954;
+}
+
+
+
+/*************************/
+/* Part C: Artists Panel */
+/*************************/
+
+.artist-card img {
+    border-radius: 50%;
+    padding: 5%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.artist-card {
+    display: grid;
+    background-color: #222222;
+    justify-content: center;
+    border: hidden;
+    border-radius: 20px;
+}
+
+.card-footer {
+    padding: 5%;
+    /*white-space: nowrap;*/
+    /*font-size: 80%;*/
+    
+}
+.card-footer h2 {
+    font-size: 110%;
+   /* white-space: nowrap;*/
+   
+
+}
+
+#featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "taylor chance bts lizzo rihanna"
+    "ariana billie beyonce lil travis";
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#taylor {
+    grid-area: taylor;
+}
+#chance {
+    grid-area: chance;
+}
+#bts {
+    grid-area: bts;
+}
+#lizzo {
+    grid-area: lizzo;
+}
+#rihanna {
+    grid-area: rihanna;
+}
+#ariana {
+    grid-area: ariana;
+}
+#billie {
+    grid-area: billie;
+}
+#beyonce {
+    grid-area: beyonce;
+}
+#lil {
+    grid-area: lil;
+}
+#travis {
+    grid-area: travis;
+}
+
+.artist-card .play-button {
+    margin-left: 80%;
+    margin-bottom: 5%;
+    border-radius: 50%;
+    background-color: #1DB954;
+    width: 30px;
+    height: 30px;
+    border: hidden;
+}
+
+
+
+
+/**************************/
+/* Part D: Responsive UIs */
+/**************************/
+
+@media (max-width: 1024px) {
+    #featured-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+           "taylor chance bts"
+           "lizzo rihanna ariana"
+           "billie beyonce lil"
+           "travis . .";
+       grid-row-gap: 20px;
+       grid-column-gap: 20px;
+       margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+ }
+ 
+ @media (max-width: 720px) {
+    #featured-content {
+       grid-template-columns: 1fr 1fr;
+       grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+       grid-template-areas:
+          "taylor chance"
+          "bts lizzo"
+          "rihanna ariana"
+          "billie beyonce"
+          "lil travis";
+       grid-row-gap: 20px;
+       grid-column-gap: 20px;
+       margin-bottom: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 100px;
+        grid-template-areas: 
+        "main"
+        "bottom";
+    }
+
+    #sidebar {
+        display: none;
+    }
+   
+    
+    #upgrade {
+        display: none;
+    }
+ }
+
+
