@@ -264,7 +264,7 @@ nav {
     width: 30px;
     height: 30px;
     border: hidden;
-    /* display: none; */
+    /* display: none;  */
 }
 
 
@@ -361,7 +361,11 @@ nav {
 
 /*hover - artist card play button*/
 
-/* #taylor:hover + .play-button {
+/* .taylor:hover {
+    display: block;
+}  */
+
+/* .card-footer:hover + .play-button {
     display: block;
 } */
 
