@@ -17,17 +17,96 @@ const search = (ev) => {
 }
 
 const getTracks = (term) => {
-    console.log(`
-        get tracks from spotify based on the search term
-        "${term}" and load them into the #tracks section 
-        of the DOM...`);
-};
+    fetch(baseURL + "?type=track&q=" + term + "&limit=5")
+        .then(response => response.json())
+        .then((data) => {
+            document.querySelector('#tracks').innerHTML = '';
+            if (data.length > 0) {
+                for (const track of data) {
+                    document.querySelector('#tracks').innerHTML += getTracksHTML(track);
+                for (const elem of document.querySelectorAll('.track-item.preview')){
+                     elem.onclick = playTrack;
+                    }     
+                } 
+            }   else {
+                document.querySelector('#tracks').innerHTML = 'No tracks found. Please try again.';
+            }  
+        })
+        };
+
+const getTracksHTML = (track) =>
+    `<button class="track-item preview" data-preview-track="${track.preview_url}" onclick="handleTrackClick(event);">
+    <img src="${track.album.image_url}">
+    <i class="fas play-track fa-play" aria-hidden="true"></i>
+    <div class="label">
+        <h2>${track.name}</h2>
+        <p>
+            ${track.artist.name}
+        </p>
+    </div>
+</button>`
+
+const playTrack = (ev) => {
+    console.log(ev.currentTarget);
+    const elem = ev.currentTarget;
+    const previewURL = elem.getAttribute('data-preview-track');
+    if (previewURL) {
+        audioPlayer.setAudioFile(previewURL);
+        audioPlayer.play();
+
+    } else {
+        console.log('there is no preview available for this track.')
+    }
+}
+
 
 const getAlbums = (term) => {
-    console.log(`
-        get albums from spotify based on the search term
-        "${term}" and load them into the #albums section 
-        of the DOM...`);
+    document.querySelector ("#albums").innerHTML = "";
+    fetch(baseURL + "?type=album&q=" + term)
+        .then(response => response.json())
+        .then((data) => {
+            document.querySelector('#albums').innerHTML = '';
+            if (data.length > 0){
+                for (const album of data) {
+                document.querySelector('#albums').innerHTML += getAlbumsHTML (album); 
+                }
+            } else { document.querySelector('#albums').innerHTML = 'No albums found. Please try again';
+            }
+         })
+};
+
+const getAlbumsHTML = (album) => 
+    `<section class="album-card" id="${album.id}">
+    <div>
+        <img src="${album.image_url}">
+        <h2>${album.name}</h2>
+        <div class="footer">
+            <a href="${album.spotify_url}" target="_blank">
+                view on spotify
+            </a>
+        </div>
+    </div>
+</section>`
+
+
+
+const getArtist = (term) => {
+    document.querySelector("#artist").innerHTML = "";
+    fetch (baseURL + '?type=artist&q=' + term)
+    .then (response => response.json())
+    .then ((data) => {
+        console.log (data);
+        if (data.length > 0) {
+            const firstArtist = data[0]
+            console.log(firstArtist)
+            document.querySelector("#artist").innerHTML = getArtistHTML(firstArtist)
+        }
+        else {
+            document.querySelector("#artist").innerHTML = 'No artists found. Please try again.'
+        }
+    })
+
+
 };
 
 const getArtistHTML = (artist) => {
@@ -48,30 +127,6 @@ const getArtistHTML = (artist) => {
     </div>
 </section>`
 }
-
-const getArtist = (term) => {
-    // console.log(`
-    //     get artists from spotify based on the search term
-    //     "${term}" and load the first artist into the #artist section 
-    //     of the DOM...`);
-    document.querySelector("#artist").innerHTML = "";
-    //`${baseURL}?type=artist&q=&{term}`
-    fetch (baseURL + '?type=artist&q=' + term)
-    .then (response => response.json())
-    .then ((data) => {
-        console.log (data);
-        if (data.length > 0) {
-            const firstArtist = data[0]
-            console.log(firstArtist)
-            document.querySelector("#artist").innerHTML = getArtistHTML(firstArtist)
-        }
-        else {
-            document.querySelector("#artist").innerHTML = 'No artists found.'
-        }
-    })
-
-
-};
 
 const handleTrackClick = (ev) => {
     const previewUrl = ev.currentTarget.getAttribute('data-preview-track');
